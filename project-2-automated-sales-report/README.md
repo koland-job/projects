@@ -2,7 +2,7 @@
 
 Automated monthly sales reporting pipeline built on the [Online Retail II](https://www.kaggle.com/datasets/lakshmi25npathi/online-retail-dataset) dataset.
 
-The goal is not to explore or research the data, but to build a repeatable reporting workflow: calculate core KPIs, aggregate product and customer metrics, and export results to a structured Excel file ready for management use.
+The goal is not to explore or research the data, but to build a repeatable reporting workflow: calculate core KPIs, aggregate product and customer metrics, and export results to a structured Excel file ready for management use. In a production setting, this notebook could be scheduled via Airflow or a cron job.
 
 ---
 
