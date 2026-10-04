@@ -1,0 +1,16 @@
+# Nightly recalc: asks the dashboard to run `python -m fleet_ledger`, the same way
+# the Google Sheets button does, so both share one lock and one run log.
+# Installed at /etc/systemd/system/; started by dashboard-recalc.timer.
+[Unit]
+Description=Recalculate finance reports (fleet_ledger)
+After=dashboard.service
+OnFailure=dashboard-recalc-alert.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/dashboard/auth.env
+# A deploy restarts the dashboard and holds the recalc lock (503): retry every 30 s for up
+# to 15 min instead of alerting. Retrying is safe: under the lock a repeat never starts a
+# second run. 409 (the previous run needs review) is not retried.
+TimeoutStartSec=20min
+ExecStart=/bin/sh -c 'curl -sS -m 30 --fail-with-body --retry 30 --retry-delay 30 --retry-max-time 900 --retry-connrefused -X POST -H "X-Recalc-Token: $RECALC_TOKEN" http://127.0.0.1:8000/api/recalc'

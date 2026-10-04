@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fleet-ledger"
+version = "1.0.0"
+description = "Bike rental finance: reads the Google Sheet, recalculates reports, writes them back"
+requires-python = ">=3.12"
+dependencies = [
+    "gspread==6.2.1",
+    "pandas==3.0.2",
+]
+
+[project.optional-dependencies]
+# The web dashboard (dashboard/backend), installed on the server together with the package.
+dashboard = [
+    "fastapi==0.141.1",
+    "uvicorn[standard]==0.53.0",
+    "python-dotenv==1.2.3",
+]
+test = ["httpx"]
+
+[project.scripts]
+fleet-ledger-recalc = "fleet_ledger.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

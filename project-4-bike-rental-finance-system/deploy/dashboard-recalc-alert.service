@@ -1,0 +1,12 @@
+# Telegram alert when the nightly recalc could not even start: dashboard down,
+# wrong token, or the previous run still needs review (409). A failure inside
+# the calculation is reported by recalc.py itself, since the timer's curl returns
+# as soon as the run starts. Started by OnFailure= in dashboard-recalc.service.
+# Installed at /etc/systemd/system/. Test: systemctl start dashboard-recalc-alert
+[Unit]
+Description=Telegram alert: nightly finance recalc did not start
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/dashboard/auth.env
+ExecStart=/bin/sh -c '[ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ] || exit 0; curl -sS -m 15 -o /dev/null --fail -d chat_id="$TELEGRAM_CHAT_ID" --data-urlencode text="🔴 fleet-ledger · the nightly recalculation did not start. Details: journalctl -u dashboard-recalc -n 20 · server: $(hostname)" "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage"'

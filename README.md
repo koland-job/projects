@@ -1,6 +1,6 @@
 # Data Analytics Portfolio
 
-A small set of end-to-end portfolio projects built on real retail data. Each project lives in its own folder with its own notebook, README, and outputs.
+A small set of end-to-end portfolio projects. Projects 1–3 are built on a real retail dataset; project 4 is a full application running on synthetic data. Each project lives in its own folder with its own README.
 
 ---
 
@@ -30,9 +30,17 @@ Interactive Tableau dashboard backed by a Python data-prep pipeline. Headline KP
 
 ---
 
+### [Project 4 — Bike Rental Finance System](./project-4-bike-rental-finance-system)
+
+Automated finance back-office for a rental business that lives in Google Sheets. A calculation engine reads the sheet, produces P&L, cash flow, free cash and what is owed to each investor, and writes the reports back; a web dashboard shows the result. Runs on two years of synthetic data with a one-command demo, a safe write path, and tests and CI.
+
+**Stack:** Python, pandas, FastAPI, vanilla JavaScript, Google Sheets API, Apps Script, Docker
+
+---
+
 ## Dataset
 
-All three projects use the [Online Retail II](https://www.kaggle.com/datasets/lakshmi25npathi/online-retail-dataset) dataset — a UK-based non-store online retailer's transactional data from December 2009 to December 2011.
+Projects 1–3 use the [Online Retail II](https://www.kaggle.com/datasets/lakshmi25npathi/online-retail-dataset) dataset — a UK-based non-store online retailer's transactional data from December 2009 to December 2011.
 
 The raw `.xlsx` file is excluded from the repository (see each project's `.gitignore`). To run the notebooks, place `online_retail_II.xlsx` in the project's `data/` folder, or configure Kaggle API credentials and the notebooks will download it automatically.
 
@@ -49,3 +57,5 @@ jupyter notebook
 ```
 
 The Tableau workbook in project 3 is opened separately in Tableau Desktop / Tableau Public.
+
+Project 4 is a Python application rather than a notebook; its README explains how to start the demo with one command.

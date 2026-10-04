@@ -1,0 +1,12 @@
+# Installed at /etc/systemd/system/ by deploy.sh, which also enables it.
+# Next runs: systemctl list-timers dashboard-recalc.timer
+[Unit]
+Description=Finance recalc twice a day
+
+[Timer]
+OnCalendar=*-*-* 06:00:00 Etc/GMT-7
+OnCalendar=*-*-* 18:00:00 Etc/GMT-7
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,14 @@
+.git
+.github
+.githooks
+.venv
+.portfolio
+**/__pycache__
+**/.env
+*.egg-info
+docs
+tests
+notebooks
+deploy
+apps_script
+README.md

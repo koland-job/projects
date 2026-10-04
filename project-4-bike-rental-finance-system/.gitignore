@@ -1,0 +1,29 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials/
+*service-account*.json
+auth.env
+
+# Local scratch, generated artefacts, historical snapshots
+backups/
+outputs/
+.ipynb_checkpoints/
+.portfolio/
+
+# Dashboard-local runtime files
+dashboard/*.png
+dashboard/.playwright-mcp/
+*.log
+
+# Python / OS
+__pycache__/
+*.egg-info/
+build/
+*.pyc
+.venv/
+venv/
+.DS_Store
