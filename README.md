@@ -34,6 +34,8 @@ Interactive Tableau dashboard backed by a Python data-prep pipeline. Headline KP
 
 Automated finance back-office for a rental business that lives in Google Sheets. A calculation engine reads the sheet, produces P&L, cash flow, free cash and what is owed to each investor, and writes the reports back; a web dashboard shows the result. Runs on two years of synthetic data with a one-command demo, a safe write path, and tests and CI.
 
+**Live demo:** [project-4-bike-rental-finance-system.onrender.com](https://project-4-bike-rental-finance-system.onrender.com/) (synthetic data, no login)
+
 **Stack:** Python, pandas, FastAPI, vanilla JavaScript, Google Sheets API, Apps Script, Docker
 
 ---

@@ -2,7 +2,7 @@
 
 An automated finance back-office for a small rental business that lives in Google Sheets: P&L, cash flow, free cash and what the business owes each investor, recalculated at the press of a menu item and shown on a live dashboard.
 
-**Live demo:** LIVE_DEMO_URL (no login, runs on synthetic data)
+**Live demo:** <https://project-4-bike-rental-finance-system.onrender.com/> (no login, runs on synthetic data; the free host sleeps when idle, so the first load can take up to a minute)
 
 ![Dashboard, all time](docs/img/dashboard-light.png)
 
@@ -34,7 +34,7 @@ What changed for the owner:
 
 The demo runs the real dashboard and the real calculation on **two years of synthetic data (about 4,000 operations)**, generated to match the operating patterns of a rental business: seasonality, typical rental lengths, deposits, payouts. The fleet grows from 10 to 30 bikes, six fictional investors join along the way, and the high and low seasons are clearly visible. No real customer, investor or amount appears anywhere in this repository.
 
-**Live demo:** LIVE_DEMO_URL
+**Live demo:** <https://project-4-bike-rental-finance-system.onrender.com/>
 
 Or run it locally in one command, see [Run locally](#run-locally).
 
