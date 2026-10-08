@@ -1,6 +1,6 @@
 # Bike Rental Finance System
 
-An automated finance back-office for a small rental business that lives in Google Sheets: P&L, cash flow, free cash and what the business owes each investor, recalculated at the press of a menu item and shown on a live dashboard.
+A finance system for a small bike rental business, designed and built from scratch: how every operation is recorded, the workbook it is recorded in, the engine that turns it into P&L, cash flow, free cash and what the business owes each investor, and a live dashboard on top.
 
 **Live demo:** <https://project-4-bike-rental-finance-system.onrender.com/> (no login, runs on synthetic data; the free host sleeps when idle, so the first load can take up to a minute)
 
@@ -10,25 +10,28 @@ An automated finance back-office for a small rental business that lives in Googl
 
 ## The problem
 
-A bike rental business was run from a single Google Sheet. Every rental, repair, deposit, salary and investor payout was entered there, and the owner knew the day-to-day well. What nobody could say was the bottom line:
+The business had no financial accounting at all. Bikes were rented out, deposits taken and returned, repairs and salaries paid, and several investors owned different bikes under different profit-sharing terms, but there was no system that kept track of it. The owner could not answer the basic questions:
 
 - Is the business in profit or in loss this month, and by how much?
 - How much of the money in the wallets is actually free to take out, and how much belongs to customers (deposits), to investors, or to next week's payroll?
-- How much is each investor owed? Several investors own different bikes under different profit-sharing terms, and payouts were made by eye.
-
-Nothing was reconciled. Answering any of these meant an afternoon with a calculator, and the answers were rarely trusted.
+- How much is each investor owed? Payouts were made by eye.
 
 ## The solution
 
-The owner keeps working in the same spreadsheet, with the same tabs and the same habits. A calculation engine reads the sheet, works out the numbers, and writes the reports back into it. A small web dashboard shows the result on a phone.
+I designed the whole data flow, from the moment money moves to the report the owner reads:
+
+- **The data model.** A Google Sheets workbook built for this business: one operations log for every rental, deposit, repair, salary and payout; directories of operation types and wallets (in several currencies); a bike register with each bike's ownership history and profit-sharing terms; investors, staff and fixed costs. See [Data model](#data-model).
+- **How data is entered.** What one operation row is (date, operation, wallet from/to, amount, bike, rental end date), which operations need a bike, how two-way and cross-currency operations are written down. Every mistake in the data is reported back in plain words, with the row it is in.
+- **The calculation engine.** Reads the workbook and writes P&L, cash flow, free cash, investor settlement and per-bike ROI back into it.
+- **The dashboard and the automation.** A web dashboard for the phone, recalculation from the sheet's menu and on a timer, Telegram alerts, a guarded deploy.
 
 What changed for the owner:
 
 - **P&L, cash flow and per-bike ROI** are always current. Pick a month and the P&L tab shows it.
 - **Free cash** is one number, with the reasons visible: wallets, minus customer deposits not yet returned, minus accrued-but-unpaid investor money, minus upcoming fixed payments, minus an operating reserve.
-- **Every investor's balance** is calculated automatically from who owned which bike when, at what share of income and of repairs. A mistake in the sheet is reported in plain words instead of silently producing a wrong total.
+- **Every investor's balance** is calculated automatically from who owned which bike when, at what share of income and of repairs.
 - **Recalculation is one click**: *Fleet Ledger → Recalculate reports* in the sheet's menu. It also runs on a timer twice a day, and failures arrive as a Telegram message.
-- **Nothing to learn**: no new tool, no migration, no export. The sheet stays the single source of truth.
+- **One source of truth**: everything is entered once, in one workbook; every report and the dashboard are derived from it.
 
 ## Live demo
 
